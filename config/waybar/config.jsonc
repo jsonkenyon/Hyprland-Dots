@@ -1,0 +1,191 @@
+[{
+    "layer": "top",
+    "output": ["DP-1"],
+    "spacing": 0,
+    "margin-top": 10,
+    "margin-left": 10,
+    "margin-right": 10,
+
+    "modules-left": [
+        "wlr/taskbar",
+        "idle_inhibitor",
+        "hyprland/workspaces",
+	    "custom/wallpaper"
+    ],
+
+    "modules-center": [
+	"custom/updates",
+        "hyprland/window",
+        "custom/spotify"
+    ],
+
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "temperature",
+        "cpu",
+        "memory",
+        "disk",
+        "bluetooth",
+        "clock",
+        "custom/logout"
+    ],
+
+
+     "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "warp-on-scroll": false,
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": "",
+            "urgent": "",
+            "focused": "",
+            "default": ""
+        },
+	"persistent-workspaces": {
+	    "*": 3,
+	    }
+    },
+
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 17,
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": [
+            "kitty",
+            "firefoxdeveloperedition"
+        ]
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+
+
+
+    "hyprland/window": {
+        "separate-outputs": true,
+    },
+
+
+    "pulseaudio": {
+        //"scroll-step": 1,
+        "format": "{icon}  {volume}%",
+        "format-muted": "🔇",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-icons": {
+            "headphone": ["  ", "  ", "  "],
+            "hands-free": "",
+            "headset":  ["  ", "  ", "  "],
+            "phone": ["  ", "  ", "  "],
+            "portable": ["  ", "  ", "  "],
+            "default": ["", "", ""]
+        },
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "/usr/bin/pavucontrol",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%"
+    },
+
+    "network": {
+        "format": " {bandwidthUpOctets}  {bandwidthDownOctets}",
+        "interval": 30,
+	"tooltip-format": "{ipaddr}/{cidr} 󰊗",
+    },
+
+    "temperature": {
+        "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+        "format": " {temperatureC}°C"
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": "  /   {}%",
+        "max-length": 10
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": "  /   {}%",
+        "max-length": 10
+    },
+
+    "disk": {
+        "interval": 30,
+        "format": "  /   {percentage_used}%",
+        "path": "/"
+    },
+
+    "bluetooth": {
+        "format": " {status}",
+        "format-disabled": "",
+        "format-off": "",
+        "interval": 30,
+        "on-click": "blueman-manager"
+    },
+
+
+    "clock":  {
+        "interval": 60,
+        "format": "{:%A, %I:%M %p}",
+        "format-alt": "{%B %d, %Y (%R)}",
+        "max-length": 35
+    },
+
+
+
+    // Custom
+
+    "custom/logout": {
+        "format": "",
+        "on-click": "wlogout",
+        "tooltip": false
+    },
+
+    "custom/updates": {
+    	"format": " {}",
+    	"tooltip": "{}",
+    	"escape": true,
+    	"return-type": "json",
+    	"restart-interval": 3600,
+    	"tooltip": true,
+    	"exec": "~/.config/dotfiles/scripts/updates.sh",
+    	"on-click": "kitty -e ~/.config/dotfiles/scripts/installupdates.sh"
+    },
+
+    /**
+     *
+     *
+     * https://raw.githubusercontent.com/Alexays/Waybar/master/resources/custom_modules/mediaplayer.py
+     *
+    */
+    "custom/spotify": {
+        "exec": "/usr/bin/python3 ~/.config/waybar/scripts/spotify.py --player spotify_player &amp;",
+        "format": "{} ",
+        "return-type": "json",
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous"
+    }
+
+    }, {
+
+    "custom/wallpaper": {
+        "format": "{} ",
+        "tooltop": false
+    }
+}]

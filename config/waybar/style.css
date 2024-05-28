@@ -1,0 +1,158 @@
+/* ===========================================================================================================\
+ *
+ *	██╗    ██╗ █████╗ ██╗   ██╗██████╗  █████╗ ██████╗     ███████╗████████╗██╗   ██╗██╗     ███████╗
+ *	██║    ██║██╔══██╗╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗    ██╔════╝╚══██╔══╝╚██╗ ██╔╝██║     ██╔════╝
+ *	██║ █╗ ██║███████║ ╚████╔╝ ██████╔╝███████║██████╔╝    ███████╗   ██║    ╚████╔╝ ██║     █████╗
+ *	██║███╗██║██╔══██║  ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗    ╚════██║   ██║     ╚██╔╝  ██║     ██╔══╝
+ *	╚███╔███╔╝██║  ██║   ██║   ██████╔╝██║  ██║██║  ██║    ███████║   ██║      ██║   ███████╗███████╗
+ *	 ╚══╝╚══╝ ╚═╝  ╚═╝   ╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝    ╚══════╝   ╚═╝      ╚═╝   ╚══════╝╚══════╝
+ * -----------------------------------------------------------------------------------------------------------|
+ *
+ *
+ *
+ *
+ * ==========================================================================================================*/
+
+@import '../../.cache/wal/colors-waybar.css';
+
+/* ------------------------------------------------------------------------------------------------------------\
+ *
+ *  General Setup
+ *
+ * -----------------------------------------------------------------------------------------------------------*/
+
+* {
+    font-family: "Fira Sans Semibold", "Font Awesome 6 Brands", "Font Awesome 6 Pro", "Font Awesome 6 Brands";
+    border: none;
+    border-radius: 0px;
+}
+
+window#waybar {
+    background-color: rgba(0,0,0,0.4);
+    border-bottom: 0px;
+    background: transparent;
+    transition-property: background-color;
+    transition-duration: .5s;
+    color: #fff;
+}
+
+/* ------------------------------------------------------------------------------------------------------------\
+ *
+ *  Workspaces
+ *
+ * -----------------------------------------------------------------------------------------------------------*/
+
+ #workspaces {
+    background: rgba(0, 0, 0, 0.8);
+    margin: 5px 8px 5px 0px;
+    padding: 5px 10px 5px 10px;
+    border-radius: 15px;
+    border: 0px;
+    font-weight: bold;
+    font-style: normal;
+    opacity: 0.8;
+    font-size: 14px;
+    color: @color11;
+}
+
+#workspaces button {
+    padding: 0px 5px;
+    margin: 4px 3px;
+    border-radius: 10px;
+    border: 0px;
+    color: @color8;
+    opacity: 0.7;
+}
+
+#workspaces button.active {
+    color: @color11;
+    border-radius: 10px;
+    opacity:1.0;
+}
+
+#workspaces button:hover {
+    color: @color11;
+    border-radius: 10px;
+    opacity: 1.0;
+    background: transparent;
+}
+
+/* ------------------------------------------------------------------------------------------------------------\
+ *
+ *  Clock, Taskbar, Bluetooth, Network, Pulseaudio, idle_inhibitor
+ *  Window
+ *
+ * -----------------------------------------------------------------------------------------------------------*/
+
+ #window,
+ #bluetooth,
+ #clock,
+ #taskbar,
+ #network,
+ #pulseaudio,
+ #idle_inhibitor {
+    background: rgba(0, 0, 0, 0.8);
+    margin: 5px 8px 5px 0px;
+    padding: 5px 10px 5px 10px;
+    border-radius: 12px;
+    color: @color8;
+    font-size: 15px;
+    opacity: 0.8;
+}
+
+#window {
+    margin: 5px;
+}
+
+#bluetooth {
+    margin: 5px 8px 5px 8px;
+}
+
+#window {
+    font-weight: bold;
+    margin: 5px 8px 5px 10px;
+}
+
+
+window#waybar.empty #window {
+    background-color:transparent;
+}
+
+
+/* ------------------------------------------------------------------------------------------------------------\
+ *
+ *  Custom
+ *
+ * -----------------------------------------------------------------------------------------------------------*/
+
+#custom-logout {
+    background: rgba(0, 0, 0, 0.8);
+    margin: 5px 8px 5px 0px;
+    padding: 5px 10px 5px 10px;
+    border-radius: 12px;
+    font-size: 18px;
+    opacity: 0.8;
+    color: @color8;
+}
+
+
+#custom-spotify,#custom-updates {
+    margin: 5px;
+    font-size: 15px;
+    padding: 5px 10px 5px 10px;
+}
+
+#custom-wallpaper
+{
+    margin: 2px;
+    font-size: 18px;
+}
+
+#custom-updates.red {
+    color: #dc2626;
+}
+
+#custom-updates.orange {
+   color: #fb923c;
+}
+
