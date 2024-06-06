@@ -25,12 +25,12 @@ cat << Banner
 ╚██████╔╝██║     ██████╔╝██║  ██║   ██║   ███████╗███████║
  ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚══════╝
                                             Installer v0.1
-         Prepareing your system to perform system updates.                                           
+         Prepareing your system to perform system updates.
 Banner
 
 ##
-#   Confirm if the user actually 
-#   wants to perform the upgrades. 
+#   Confirm if the user actually
+#   wants to perform the upgrades.
 ##
 if ! gum confirm --prompt.foreground="#ffaf00" "Do you want to start the updates now?" ; then
 
@@ -44,12 +44,12 @@ clear
 ##
 cat << Cancelled
 
-██╗   ██╗██████╗ ██████╗  █████╗ ████████╗███████╗███████╗     ██████╗ █████╗ ███╗   ██╗ ██████╗███████╗██╗     ██╗     ███████╗██████╗ 
+██╗   ██╗██████╗ ██████╗  █████╗ ████████╗███████╗███████╗     ██████╗ █████╗ ███╗   ██╗ ██████╗███████╗██╗     ██╗     ███████╗██████╗
 ██║   ██║██╔══██╗██╔══██╗██╔══██╗╚══██╔══╝██╔════╝██╔════╝    ██╔════╝██╔══██╗████╗  ██║██╔════╝██╔════╝██║     ██║     ██╔════╝██╔══██╗
 ██║   ██║██████╔╝██║  ██║███████║   ██║   █████╗  ███████╗    ██║     ███████║██╔██╗ ██║██║     █████╗  ██║     ██║     █████╗  ██║  ██║
 ██║   ██║██╔═══╝ ██║  ██║██╔══██║   ██║   ██╔══╝  ╚════██║    ██║     ██╔══██║██║╚██╗██║██║     ██╔══╝  ██║     ██║     ██╔══╝  ██║  ██║
 ╚██████╔╝██║     ██████╔╝██║  ██║   ██║   ███████╗███████║    ╚██████╗██║  ██║██║ ╚████║╚██████╗███████╗███████╗███████╗███████╗██████╔╝
- ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚══════╝     ╚═════╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝╚══════╝╚══════╝╚══════╝╚══════╝╚═════╝ 
+ ╚═════╝ ╚═╝     ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚══════╝     ╚═════╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝╚══════╝╚══════╝╚══════╝╚══════╝╚═════╝
                                                                                       As per your request, updates have been cancelled.
 Cancelled
 ##
@@ -64,44 +64,18 @@ sleep 1.5
 exit 1
 fi
 
-
 ##
-# Clear terminal window
+#   Get the packages that need updates
+#   and list them.
 ##
-clear
-
-##
-#   List Packages? Banner
-##
-cat << listPackages
-
-██╗     ██╗███████╗████████╗    ██████╗  █████╗  ██████╗██╗  ██╗ █████╗  ██████╗ ███████╗███████╗██████╗ 
-██║     ██║██╔════╝╚══██╔══╝    ██╔══██╗██╔══██╗██╔════╝██║ ██╔╝██╔══██╗██╔════╝ ██╔════╝██╔════╝╚════██╗
-██║     ██║███████╗   ██║       ██████╔╝███████║██║     █████╔╝ ███████║██║  ███╗█████╗  ███████╗  ▄███╔╝
-██║     ██║╚════██║   ██║       ██╔═══╝ ██╔══██║██║     ██╔═██╗ ██╔══██║██║   ██║██╔══╝  ╚════██║  ▀▀══╝ 
-███████╗██║███████║   ██║       ██║     ██║  ██║╚██████╗██║  ██╗██║  ██║╚██████╔╝███████╗███████║  ██╗   
-╚══════╝╚═╝╚══════╝   ╚═╝       ╚═╝     ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚══════╝  ╚═╝   
-                       At this point you have an option to list the packages that are pending updates.                                                                                                     
-listPackages
-##
-#   Lets prompt the user, to 
-#   see if they want to get
-#   the output of packages
-#   that are being updated.
-##
-if gum confirm --prompt.foreground="#ffaf00" "Do you want to see the packages that are going to be updated? (Note you could copy this into the snapshot comment.)" ; then
-    echo ""
-    echo "The following packages will be updated:"
-    echo " "
-    echo "$(gum style --italic --foreground 99 'Arch Repo')"
-    checkupdates | awk '{ updates = updates ( NR==1 ? "" : ", ") $1 } END { print updates }'
-    echo " "
-    echo "$(gum style --italic --foreground 99 'Aur Repo')"
-    yay -Qua | awk '{ aurUpdates = updates ( NR==1 ? "" : ", ") $1 } END { print aurUpdates }'
-else
-    echo "Continuing without providing the packages that will be updated..."
-    echo ""
-fi
+echo ""
+echo "The following packages will be updated:"
+echo " "
+echo "$(gum style --italic --foreground 99 'Arch Repo')"
+checkupdates | awk '{ updates = updates ( NR==1 ? "" : ", ") $1 } END { print updates }'
+echo " "
+echo "$(gum style --italic --foreground 99 'Aur Repo')"
+yay -Qua | awk '{ aurUpdates = updates ( NR==1 ? "" : ", ") $1 } END { print aurUpdates }'
 
 
 ##
@@ -114,14 +88,15 @@ fi
 cat << snapshot
 
 
-███████╗███╗   ██╗ █████╗ ██████╗ ███████╗██╗  ██╗ ██████╗ ████████╗██████╗ 
+███████╗███╗   ██╗ █████╗ ██████╗ ███████╗██╗  ██╗ ██████╗ ████████╗██████╗
 ██╔════╝████╗  ██║██╔══██╗██╔══██╗██╔════╝██║  ██║██╔═══██╗╚══██╔══╝╚════██╗
 ███████╗██╔██╗ ██║███████║██████╔╝███████╗███████║██║   ██║   ██║     ▄███╔╝
-╚════██║██║╚██╗██║██╔══██║██╔═══╝ ╚════██║██╔══██║██║   ██║   ██║     ▀▀══╝ 
-███████║██║ ╚████║██║  ██║██║     ███████║██║  ██║╚██████╔╝   ██║     ██╗   
-╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝ ╚═════╝    ╚═╝     ╚═╝   
-               Do you want to do a snapshot before updating, (Recommended)                                                                    
+╚════██║██║╚██╗██║██╔══██║██╔═══╝ ╚════██║██╔══██║██║   ██║   ██║     ▀▀══╝
+███████║██║ ╚████║██║  ██║██║     ███████║██║  ██║╚██████╔╝   ██║     ██╗
+╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝     ╚══════╝╚═╝  ╚═╝ ╚═════╝    ╚═╝     ╚═╝
+               Do you want to do a snapshot before updating, (Recommended)
 snapshot
+
 ##
 #   Lets prompt the user if
 #   they want to do a snapshot

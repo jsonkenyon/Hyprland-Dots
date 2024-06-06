@@ -20,16 +20,15 @@ orangeThreshold=5
 redThreshold=15
 
 ##
-##
 #  Check main arch updates repo
 #  and return updates count
 ###
 archUpdates=$( checkupdates 2> /dev/null | wc -l );
 
 ##
-#  Check aur updates repo and 
+#  Check aur updates repo and
 #  return the updates count
-#  yay -Qua causes waybar 
+#  yay -Qua causes waybar
 #  to crash. so instead
 #  use trizen.
 ###
